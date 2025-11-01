@@ -2,9 +2,9 @@
   hosts: local
   connection: local
   vars:
-    ami_id: ami-09c813fb71547fc4f  # took this from my shell-roboshop project / u can also take this from ur ec2
-    sg_id: sg-009fa2b813b96b24d # took this from my shell-roboshop project 
-    zone_id: Z07005331VKQNOA14SRCD # took this from my shell-roboshop project 
+    ami_id: ami-09c813fb71547fc4f  #  take this from ur ec2
+    sg_id: sg-0386fad148560778b # take this from ur ec2
+    zone_id: Z04936233JDYCWRJS57S7 # take this from ur ec2 
     domain_name: "rakesh12.fun"
     instances:
     - mongodb
