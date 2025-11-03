@@ -66,9 +66,10 @@
   #     eval: db.getMongo().getDBNames().indexOf('catalogue')
   #   register: catalogue_output
 
-  - name: print catalogue_output
-    ansible.builtin.debug:
-      msg: "{{ catalogue_output }}"
+  # - name: print catalogue_output
+  #   ansible.builtin.debug:
+  #     msg: "{{ catalogue_output }}"
 
-  # - name: load products into mongodb
-  #   ansible.builtin.shell: mongosh --host 54.167.76.122 </app/db/master-data.js
+  - name: load products into mongodb
+    ansible.builtin.shell: mongosh --host 54.167.76.122 </app/db/master-data.js
+    when: catalogue_output.stdout < 0
