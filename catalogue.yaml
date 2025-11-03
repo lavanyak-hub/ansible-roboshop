@@ -62,6 +62,7 @@
 
   - name: evaluate catalogue database
     community.mongodb.mongodb_shell:
+      login_host: 54.167.76.122
       eval: db.getMongo().getDBNames().indexOf('catalogue')
     register: catalogue_output
 
