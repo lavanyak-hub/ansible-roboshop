@@ -6,11 +6,13 @@
     sg_id: sg-0386fad148560778b  # take this from ur ec2
     zone_id: Z04936233JDYCWRJS57S7 # take this from ur ec2 
     domain_name: "rakesh12.fun"
-    instances:
-    - mongodb
-    - redis
-    - myaql
-    - rabbitmq
+
+    # we can pss instances through command line also using -e 
+    # instances:
+    # - mongodb
+    # - redis
+    # - myaql
+    # - rabbitmq
 
   tasks: 
   - name: create ec2 instance
