@@ -9,31 +9,23 @@
     loop:
     - maven
     - mysql
-  
-  - name: install java
-    ansible.builtin.dnf:
-      name: java-17-openjdk
-      state: present
 
-
-  - name: install mysql python liabraries
+  - name: install mysql python libraries
     ansible.builtin.pip:
       executable: pip3.9
       name: "{{ item }}"
     loop:
     - cryptography
-    - PyMYSQL
+    - PyMySQL
 
-
-  
   - name: create roboshop system user
     ansible.builtin.user:
       name: roboshop
       comment: RoboShop System user
-      system: true  # if we keep system as true we can get the system user
+      system: true
       shell: /sbin/nologin
       home: /app
-  
+
   - name: remove app directory
     ansible.builtin.file:
       path: /app
@@ -60,36 +52,39 @@
       dest: /app
       remote_src: yes
 
-  - name: move jar file
-    ansible.builtin.command: mv shipping-1.0.jar shipping.jar
+  - name: install dependencies
+    ansible.builtin.command: mvn clean package
+    args:
+      chdir: /app
 
+  - name: move jar file
+    ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+    args:
+      chdir: /app
 
   - name: copy shipping service
     ansible.builtin.copy:
       src: shipping.service
       dest: /etc/systemd/system/shipping.service
 
-  - name: import shippin data into mysql
-    community.mysql.mysql_db:  # to create this module we need  to run python so we rought code from 13 to 19.
+  - name: import shipping data into mysql
+    community.mysql.mysql_db:
       state: import
       name: all
-      login_host: 52.91.192.191
+      login_host: mysql.daws86s.fun
       login_user: root
       login_password: RoboShop@1
       target: "{{ item }}"
-
     loop:
     - /app/db/schema.sql
-    - /app/db/app-user.sql
+    - /app/db/app-user.sql 
     - /app/db/master-data.sql
 
-  - name: daemon reload enable start
+  - name: daemon reload enable and start
     ansible.builtin.systemd_service:
       name: shipping
       enabled: true
       state: started
       daemon_reload: true
-      
 
   
-
