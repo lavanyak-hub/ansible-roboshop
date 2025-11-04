@@ -19,7 +19,7 @@
       path: /usr/share/nginx/html/
 
   - name: create html directory
-    ansible.builtin.files:
+    ansible.builtin.file:
       path: /usr/share/nginx/html/
       state: directory
 
