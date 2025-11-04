@@ -6,7 +6,6 @@ User=roboshop
 // highlight-start
 Environment=CART_ENDPOINT=54.160.220.137:8080
 Environment=DB_HOST=52.91.192.191
-Environment=MONGO_URL="mongodb://172.31.16.11:27017/catalogue"
 // highlight-end
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
