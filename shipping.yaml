@@ -10,6 +10,15 @@
     - maven
     - mysql
 
+  - name: install mysql python liabraries
+    ansible.builtin.pip:
+      executable: pip3.9
+      name: "{{ item }}"
+    loop:
+    - cryptography
+    - PyMYSQL
+
+
   
   - name: create roboshop system user
     ansible.builtin.user:
@@ -59,11 +68,11 @@
       dest: /etc/systemd/system/shipping.service
 
   - name: import shippin data into mysql
-    community.mysql.mysql_db:
+    community.mysql.mysql_db:  # to create this module we need  to run python so we rought code from 13 to 19.
       state: import
       name: all
       login_host: 52.91.192.191
-      login_host: root
+      login_user: root
       login_password: RoboShop@1
       target: "{{ item }}"
 
@@ -72,6 +81,13 @@
     - /app/db/app-user.sql
     - /app/db/master-data.sql
 
+  - name: daemon reload enable start
+    ansible.builtin.systemd_service:
+      name: shipping
+      enabled: true
+      state: started
+      daemon_reload: true
+      
 
   
 
