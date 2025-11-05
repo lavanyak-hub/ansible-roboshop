@@ -71,7 +71,7 @@
     community.mysql.mysql_db:
       state: import
       name: all
-      login_host: 52.91.192.191
+      login_host: 34.224.100.113
       login_user: root
       login_password: RoboShop@1
       target: "{{ item }}"
