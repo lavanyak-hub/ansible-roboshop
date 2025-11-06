@@ -2,7 +2,7 @@
   hosts: mongodb
   become: yes
   tasks:
-  - name: copy mongodb redirect_output
+  - name: copy mongodb repo
     ansible.builtin.copy:     # search in google as ansible copy module
       src: mongo.repo
       dest: /etc/yum.repos.d/mongo.repo
