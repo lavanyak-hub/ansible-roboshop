@@ -5,11 +5,11 @@ Description=Payment Service
 User=root
 WorkingDirectory=/app
 // highlight-start
-Environment=CART_HOST=3.89.29.15
+Environment=CART_HOST=54.165.225.109
 Environment=CART_PORT=8080
-Environment=USER_HOST=3.88.114.43
+Environment=USER_HOST=44.220.133.193
 Environment=USER_PORT=8080
-Environment=AMQP_HOST=52.91.142.236
+Environment=AMQP_HOST=75.101.224.113
 // highlight-end
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
